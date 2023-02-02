@@ -1,16 +1,28 @@
-import React , {useState} from "react";
-import { Link  } from "react-router-dom";
+import React , {useState , useEffect} from "react";
+import { Link , useNavigate } from "react-router-dom";
 import { showErrorMsg } from "../helpers/message";
 import { showLoading } from "../helpers/loading";
 import isEmpty from "validator/lib/isEmpty";
 import isEmail from "validator/lib/isEmail";
 import { signin } from "../api/auth";
+import { setAuthentication, isAuthenticated } from "../helpers/auth";
 
 
 
 
 const Signin  = () => {
+     let navigate= useNavigate();
       
+       useEffect(() =>{
+        if(isAuthenticated() && isAuthenticated().role === 1){
+            navigate("/admin/dashboard");
+
+        } else if (isAuthenticated() && isAuthenticated().role === 0){
+            navigate("/user/dashboard");
+        }
+
+
+       })
 
     const handleChange = (evt) => {
         setFormData({
@@ -43,6 +55,30 @@ const Signin  = () => {
                     setFormData({ ...formData , loading: true});
                      
                     signin(data)
+
+                     .then(response =>{
+                         setAuthentication(response.data.token , response.data.user)
+
+                         if(isAuthenticated() && isAuthenticated().role === 1){
+                             console.log("Redirecting to admin dashboard");
+                             navigate("/admin/dashboard");
+
+                         } else{
+                             console.log("Redirecting to user dashboard");
+                             navigate("/user/dashboard");
+                         }
+
+
+                     })
+
+                     .catch(err =>{
+                         console.log("signin api function error :",err);
+                         setFormData({
+                             ...formData ,
+                             loading:false,
+                             errorMsg:err.response.data.errorMessage,
+                         })
+                     })
                       
                 }
          
@@ -54,7 +90,7 @@ const Signin  = () => {
         password: "abc123",
         errorMsg: false,
         loading: false,
-        redirectToDashboard : false, 
+        
     });
 
     const {
@@ -63,8 +99,6 @@ const Signin  = () => {
         password,
         errorMsg,
         loading ,
-        redirectToDashboard,
-
     } = formData;
 
     const showSigninForm = () => (
@@ -101,7 +135,7 @@ const Signin  = () => {
                     name="password"
                     value={password}
                     className="form-control"
-                    placeholder=" Create password"
+                    placeholder=" Enter your password"
                     type="password"
                     onChange={handleChange}
                 />

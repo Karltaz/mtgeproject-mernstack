@@ -1,17 +1,58 @@
+/* Signup page  */
 .signup-container {
-    background-image: url("image-signup.jpg"); 
-     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.8;
-   
+  background-image: url("/images/image-signup.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
+
 }
 
+/* Signin Page */
+
 .signin-container {
-    background-image: url("image-signup.jpg"); 
-     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.8;
-   
+  background-image: url("/images/image-signup.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
+
+
+}
+
+
+/* Homepage */
+
+.securityBand {
+  background-color: rgb(66, 65, 65);
+  text-transform: capitalize;
+  color: hsl(0, 0%, 100%);
+}
+
+.footer_container {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+/* 
+.footerColumn {
+  margin-top: 30px;
+  text-transform: uppercase;
+
+  align-items:center;
+  justify-content: center;
+  margin-left: 20px;
+  margin-right: 20px;
+} */
+
+.socialMediaContainerFooter {
+
+  margin-left: 49%;
+}
+
+.copyrightBand {
+  background-color: rgb(3, 0, 0);
+  text-align: center;
+  color: white;
+  align-content: left;
 }

@@ -8,6 +8,7 @@ import Card from './Card';
 const Shop = () => {
 
     const [text , setText] = useState("");
+    const [categoryIds , setCategoryIds]= useState([]);
 
         const dispatch = useDispatch();
 
@@ -23,11 +24,39 @@ const Shop = () => {
         const {categories} = useSelector(state => state.categories);
 
         const handleSearch= (e) =>{
+               resetState();
+
             setText(e.target.value);
 
             dispatch(getProductsByFilter({ type: "text" , query: e.target.value}));
         }
 
+        const handleCategory = (e) =>{
+              resetState();
+
+            const currentCategoryChecked=e.target.value;
+            const allCategoriesChecked=[...categoryIds];
+            const indexFound= allCategoriesChecked.indexOf(currentCategoryChecked);
+    
+
+        let updatedCategoryIds;
+         if(indexFound === -1) {
+            //add
+            updatedCategoryIds = [...categoryIds , currentCategoryChecked];
+               setCategoryIds(updatedCategoryIds);
+         }else{
+            //remove
+            updatedCategoryIds = [...categoryIds];
+            updatedCategoryIds.splice(indexFound , 1);
+            setCategoryIds(updatedCategoryIds);
+         }
+         dispatch(getProductsByFilter({ type: "category" , query: updatedCategoryIds}));
+        }
+
+         const resetState = () =>{
+            setText("");
+            setCategoryIds([]);
+         }
     return (
         <section className='shop-page m-3'>
             <div className="mt-4 p-5 bg-secondary bg-dark text-light text-center rounded ">
@@ -48,13 +77,21 @@ const Shop = () => {
                             aria-label="Search" 
                             onChange={handleSearch}
                             />
-                            <button className="btn btn-outline-info" type="submit">Search</button>
+                            <button className="btn btn-outline-info" type="submit" >Search</button>
                         </form>
                     </nav>
                     <div className='border-top border-bottom bg-light'>
                         {categories && categories.map(c =>
                         <div key={c._id} className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked"  />
+                        <input
+                         className="form-check-input"
+                          type="checkbox" 
+                          name='category'
+                           value={c._id} 
+                           id="flexCheckChecked"  
+                           checked={categoryIds.includes(c._id)}
+                           onChange={handleCategory}
+                           />
                         <label className="form-check-label" htmlFor="flexCheckChecked">
                          {c.category}
                         </label>

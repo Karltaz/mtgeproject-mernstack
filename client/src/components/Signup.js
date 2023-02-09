@@ -192,7 +192,7 @@ const Signup = () => {
 
             {/* signup button */}
             <div className="d-grid gap-2 col-6 mx-auto " >
-            <button type="submit" className="btn btn-danger btn-block ">
+                <button type="submit" className="btn btn-danger btn-block ">
                     Register
 
                 </button>

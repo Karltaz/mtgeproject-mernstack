@@ -1,10 +1,10 @@
 import React from "react";
 
-const UserDashboard  = () => { 
+const UserDashboard = () => {
 
-    return (  
-      <p></p>
-    );
+  return (
+    <p></p>
+  );
 }
- 
-export default UserDashboard ;
+
+export default UserDashboard;

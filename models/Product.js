@@ -40,7 +40,7 @@ const ProductSchema = new mongoose.Schema({
 }, { timestamps: true });
   
 
-
+ProductSchema.index({productName: "text"});
 const Product = mongoose.model("Product", ProductSchema);
 
 

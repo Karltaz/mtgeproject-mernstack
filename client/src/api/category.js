@@ -1,21 +1,21 @@
 import axios from "axios";
-export const createCategory = async(formData) =>{
+export const createCategory = async (formData) => {
 
-    const config ={
+     const config = {
 
-    headers:{
-         "Content-Type" : "application/json"
-    }
-  }
+          headers: {
+               "Content-Type": "application/json"
+          }
+     }
 
-            const response = await axios.post("/api/category" , formData , config);   
-        
-            return response;
+     const response = await axios.post("/api/category", formData, config);
+
+     return response;
 };
 
-export const getCategories = async() =>{
+export const getCategories = async () => {
 
-                const response = await axios.get("/api/category");   
-         
-             return response;
- };
+     const response = await axios.get("/api/category");
+
+     return response;
+};

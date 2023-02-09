@@ -24,7 +24,7 @@ const Header = () => {
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
             aria-expanded="false" aria-label="Toggle navigation">
-           <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
 
@@ -38,6 +38,10 @@ const Header = () => {
                     <li className="nav-item">
 
                       <Link to="/" className="nav-link active"><i className="fa-solid fa-house"></i> Home  </Link>
+                    </li>
+                    <li className="nav-item">
+
+                      <Link to="/shop" className="nav-link active"><i className="fas fa-shopping-bag"></i> Shop </Link>
                     </li>
 
                     <li className="nav-item">
